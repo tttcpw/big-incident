@@ -51,7 +51,7 @@ $("#register-botton").on("submit",function (a) {
     let data = $(this).serialize().trim();
     $.ajax({
         type:`POST`,
-        url:`http://ajax.frontend.itheima.net/api/reguser`,
+        url:`/api/reguser`,
         data,
         success:function (res) {
             if (res.status !== 0) {
@@ -75,12 +75,18 @@ $("#logo-top").on("submit",function (a) {
     let data = $(this).serialize().trim();
     $.ajax({
         type:`POST`,
-        url:`http://ajax.frontend.itheima.net/api/login`,
+        url:`/api/login`,
         data,
        success:function (res) {
             if (res.status !== 0) {
               return layer.msg(res.message); 
             }
+
+
+            localStorage.setItem("token",res.token)
+            // 获得token
+
+
             layer.msg(
             res.message, 
             {
