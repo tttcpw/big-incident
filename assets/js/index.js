@@ -39,7 +39,17 @@ if (res.data.user_pic) {
 
 $(function () {
   
-
+let $quit = $(".quit")
+$quit.on("click",function (a) {
+  a.preventDefault()
+  layer.confirm('确定退出登录?', {icon: 3, title:'退出'}, function(index){
+  
+  if (index !== 0) {
+    location.href = "/home/login.html"
+  }
+  layer.close(index);
+});
+})
 
 
 

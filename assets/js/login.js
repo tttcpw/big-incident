@@ -93,7 +93,7 @@ $("#logo-top").on("submit",function (a) {
             time: 2000
             },
             function(){
-                location.href = '/index.html';
+                location.href = "/home/index.html"
             }); 
             
         }
