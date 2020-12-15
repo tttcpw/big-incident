@@ -32,7 +32,6 @@ if (res.data.user_pic) {
      localStorage.removeItem("token")
      location.href = "/home/login.html"
     }
-    console.log(res);
     
   }
 })
