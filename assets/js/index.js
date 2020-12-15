@@ -4,9 +4,6 @@ function getMessage() {
  let layer = layui.layer;
 $.ajax({
     url:"/my/userinfo",
-    headers:{
-        Authorization:localStorage.getItem("token")
-    },
     success:function (res) {
         if (res.status !== 0) {
             return layer.msg("获取用户信息失败");
@@ -28,7 +25,16 @@ if (res.data.user_pic) {
   $(".text-top").css("display","inline-block").text(myname)// 展示文字头像; 还需要修改文字头像的文字（来源于name的第一个字）
 }
       
+},
+  complete:function (res) {
+    if (res.responseJSON.status === 1 || res.responseJSON.message === "身份认证失败！") {
+     layer.msg("获取用户信息失败，请先登录！");
+     localStorage.removeItem("token")
+     location.href = "/home/login.html"
     }
+    console.log(res);
+    
+  }
 })
 
 }
@@ -46,18 +52,11 @@ $quit.on("click",function (a) {
   
   if (index !== 0) {
     location.href = "/home/login.html"
+    localStorage.removeItem("token")
   }
   layer.close(index);
 });
 })
-
-
-
-
-
-
-
-
 
 
 
